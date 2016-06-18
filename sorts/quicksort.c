@@ -3,6 +3,29 @@
 
 // Theoretical O(nLog(n)) average algorithm.
 
+void swap(int A[], int fo, int so)
+{
+	int tmp = A[fo];
+	A[fo] = A[so];
+	A[so] = tmp;
+}
+
+
+int medianOfThree(int A[], int lo, int hi)
+{
+	int mid = hi - (hi - lo) / 2;
+
+	if (A[lo] > A[hi])
+		swap(A, lo, hi);
+	if (A[lo] > A[mid])
+		swap(A, lo, mid);
+	if (A[mid] > A[hi])
+		swap(A, mid, hi);
+
+	return A[mid];
+}
+
+
 int partition(int A[], int lo, int hi)
 {
 	int pivot;
@@ -11,32 +34,7 @@ int partition(int A[], int lo, int hi)
 	int j = hi + 1;
 
 	// // Get median of three
-	int mid = j - (j - i) / 2;
-
-	// Arrange so that A[lo] <= A[mid] <= A[hi]
-	// Writing a swap function would probably increase
-	// function call overhead quite a bit?
-	int tmp;
-	if (A[lo] > A[hi])
-	{
-		tmp = A[lo];
-		A[lo] = A[hi];
-		A[hi] = tmp;
-	}
-	if (A[lo] > A[mid])
-	{
-		tmp = A[lo];
-		A[lo] = A[mid];
-		A[mid] = tmp;
-	}
-	if (A[mid] > A[hi])
-	{
-		tmp = A[mid];
-		A[mid] = A[hi];
-		A[hi] = tmp;
-	}
-
-	pivot = A[mid];
+	pivot = medianOfThree(A, lo, hi);
 
 	while (1)
 	{
@@ -46,10 +44,7 @@ int partition(int A[], int lo, int hi)
 		if (i >= j)
 			return j;
 
-		int tmp;
-		tmp = A[i];
-		A[i] = A[j];
-		A[j] = tmp;
+		swap(A, i, j);
 	}
 
 }
