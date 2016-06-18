@@ -71,9 +71,7 @@ int main(int argc, char *argv[])
 
 	// Create our array
 	for (int i = 0; i < listSize; i++)
-	{
 		unsortedList[i] = atoi(argv[i + 1]);
-	}
 
 	gettimeofday(&start, NULL);
 	quicksort(unsortedList, 0, listSize - 1);

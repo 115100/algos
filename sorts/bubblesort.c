@@ -7,12 +7,10 @@
 
 void bubble_sort(int unsortedList[], int listSize)
 {
-	int tmp, haveSwapped;
+	int haveSwapped;
 
 	if (listSize < 2)
-	{
 		return;
-	}
 
 	for (int i = listSize; i > 1; i--)
 	{
@@ -22,7 +20,7 @@ void bubble_sort(int unsortedList[], int listSize)
 		{
 			if (unsortedList[j] > unsortedList[j + 1])
 			{
-				tmp = unsortedList[j];
+				int tmp = unsortedList[j];
 				unsortedList[j] = unsortedList[j + 1];
 				unsortedList[j + 1] = tmp;
 
@@ -31,9 +29,7 @@ void bubble_sort(int unsortedList[], int listSize)
 		}
 
 		if (!haveSwapped)
-		{
 			break;
-		}
 	}
 }
 
@@ -47,9 +43,7 @@ int main(int argc, char *argv[])
 
 	// Create our array
 	for (int i = 0; i < listSize; i++)
-	{
 		unsortedList[i] = atoi(argv[i + 1]);
-	}
 
 	gettimeofday(&start, NULL);
 	bubble_sort(unsortedList, listSize);
