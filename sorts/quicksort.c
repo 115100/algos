@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <sys/time.h>
 
 // Theoretical O(nLog(n)) average algorithm.
 
@@ -66,13 +67,19 @@ int main(int argc, char *argv[])
 	int listSize = argc - 1;
 	int unsortedList[listSize];
 
+	struct timeval start, end;
+
 	// Create our array
 	for (int i = 0; i < listSize; i++)
 	{
 		unsortedList[i] = atoi(argv[i + 1]);
 	}
 
+	gettimeofday(&start, NULL);
 	quicksort(unsortedList, 0, listSize - 1);
+	gettimeofday(&end, NULL);
+
+	printf("%ld\n", 1000000 * start.tv_sec + start.tv_usec - 1000000 * end.tv_sec + end.tv_usec);
 
 	return 0;
 }
