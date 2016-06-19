@@ -4,8 +4,8 @@
 
 #include "blahsort.h"
 
-#define MIN -65534
-#define MAX 65534
+#define MIN -32768
+#define MAX 32768
 
 void blah_sort(int a[], long len)
 {
