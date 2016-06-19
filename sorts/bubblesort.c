@@ -1,5 +1,6 @@
 // Very inefficient sorting "algorithm". O(n*n) average.
 #include "bubblesort.h"
+#include "utils.h"
 
 
 void bubble_sort(int A[], long len)
@@ -17,10 +18,7 @@ void bubble_sort(int A[], long len)
 		{
 			if (A[j] > A[j + 1])
 			{
-				int tmp = A[j];
-				A[j] = A[j + 1];
-				A[j + 1] = tmp;
-
+				swap(A, j, j + 1);
 				haveSwapped = 1;
 			}
 		}
