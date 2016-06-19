@@ -4,6 +4,7 @@
 #include <time.h>
 
 #include "blahsort.h"
+#include "bogosort.h"
 #include "bubblesort.h"
 #include "quicksort.h"
 
@@ -52,8 +53,9 @@ int main(int argc, char *argv[])
 		len = strtol(argv[2], &tmp, 10);
 	}
 
-	printf("Bubble sort took %ldus.\n", callSorter(&bubble_sort, iter, len));
-	printf("Quick sort took %ldus.\n", callSorter(&quicksort, iter, len));
+	// printf("Bogosort took %ldus.\n", callSorter(&bogosort, iter, len));
+	printf("Bubblesort took %ldus.\n", callSorter(&bubble_sort, iter, len));
+	printf("Quicksort took %ldus.\n", callSorter(&quicksort, iter, len));
 	printf("Nand's magic took %ldus.\n", callSorter(&blah_sort, iter, len));
 
 	return 0;
