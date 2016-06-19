@@ -32,7 +32,6 @@ int partition(int A[], long lo, long hi)
 	int i = lo - 1;
 	int j = hi + 1;
 
-	// // Get median of three
 	pivot = medianOfThree(A, lo, hi);
 
 	while (1)
