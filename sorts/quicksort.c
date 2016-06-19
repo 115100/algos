@@ -1,8 +1,6 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/time.h>
-
 // Theoretical O(nLog(n)) average algorithm.
+#include "quicksort.h"
+
 
 void swap(int A[], int fo, int so)
 {
@@ -12,7 +10,7 @@ void swap(int A[], int fo, int so)
 }
 
 
-int medianOfThree(int A[], int lo, int hi)
+int medianOfThree(int A[], long lo, long hi)
 {
 	int mid = hi - (hi - lo) / 2;
 
@@ -27,7 +25,7 @@ int medianOfThree(int A[], int lo, int hi)
 }
 
 
-int partition(int A[], int lo, int hi)
+int partition(int A[], long lo, long hi)
 {
 	int pivot;
 
@@ -51,33 +49,19 @@ int partition(int A[], int lo, int hi)
 }
 
 
-void quicksort(int A[], int lo, int hi)
+void _quicksort(int A[], long lo, long hi)
 {
-	if (hi - lo < 2) return;
+	if (hi - lo < 2)
+		return;
 
 	int p = partition(A, lo, hi);
 
-	quicksort(A, lo, p);
-	quicksort(A, p + 1, hi);
+	_quicksort(A, lo, p);
+	_quicksort(A, p + 1, hi);
 }
 
 
-int main(int argc, char *argv[])
+void quicksort(int A[], long len)
 {
-	int listSize = argc - 1;
-	int unsortedList[listSize];
-
-	struct timeval start, end;
-
-	// Create our array
-	for (int i = 0; i < listSize; i++)
-		unsortedList[i] = atoi(argv[i + 1]);
-
-	gettimeofday(&start, NULL);
-	quicksort(unsortedList, 0, listSize - 1);
-	gettimeofday(&end, NULL);
-
-	printf("%ld\n", 1000000 * start.tv_sec + start.tv_usec - 1000000 * end.tv_sec + end.tv_usec);
-
-	return 0;
+	_quicksort(A, 0, len - 1);
 }

@@ -1,4 +1,15 @@
-all: bubblesort quicksort
+CFLAGS = -Iinclude -std=gnu99 -O2
 
+%.o: %.c
+	$(CC) $(CFLAGS) -c $<
+
+SRC_C = $(wildcard *.c)
+
+OBJ = $(SRC_C:.c=.o)
+
+benchmarker: $(OBJ)
+	$(CC) -o $@ $+
+
+.PHONY: clean
 clean:
-	rm -f *sort
+	rm -f *.o benchmarker

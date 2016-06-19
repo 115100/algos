@@ -1,0 +1,24 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+
+#include "blahsort.h"
+
+#define MIN -65534
+#define MAX 65534
+
+void blah_sort(int a[], long len)
+{
+    const size_t num = MAX - MIN;
+    short *count = malloc(sizeof(short) * num);
+    memset(count, 0, sizeof(short) * num);
+
+    for (int i = 0; i < len; i++)
+        count[a[i] - MIN]++;
+
+    int pos = 0;
+    for (int i = 0; i < num; i++) {
+        while (count[i]-- > 0)
+            a[pos++] = i + MIN;
+    }
+}
