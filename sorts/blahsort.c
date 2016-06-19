@@ -10,7 +10,11 @@
 void blah_sort(int a[], long len)
 {
     const size_t num = MAX - MIN;
-    short *count = malloc(sizeof(short) * num);
+	short *count;
+
+	if ((count = malloc(sizeof(short) * num)) == NULL)
+		abort();
+
     memset(count, 0, sizeof(short) * num);
 
     for (int i = 0; i < len; i++)
@@ -21,4 +25,6 @@ void blah_sort(int a[], long len)
         while (count[i]-- > 0)
             a[pos++] = i + MIN;
     }
+
+    free(count);
 }
